@@ -24,30 +24,21 @@
 #     print(-num)
 # print(ord('A'), ord('哈'), chr(65), '\u4e2d\u6587')
 
-# print('hello, %s' % 'world', 
-# '''
-# %%运算符用来格式化字符串
-# %%s表示用%s替换
-# %%f表示用%s替换
-# %%d表示用%s替换
-# %%x表示用%s替换''' % ('字符串', '浮点数', '整数', '十六进制整数'))
+print('hello, %s' % 'world', 
+'''
+%%运算符用来格式化字符串
+%%s表示用%s替换
+%%f表示用%s替换
+%%d表示用%s替换
+%%x表示用%s替换''' % ('字符串', '浮点数', '整数', '十六进制整数'))
 
 s1 = 72
 s2 = 85
 r = (s2 - s1) / s1 * 100
-print('%.1f%%' % r)
-print('%.2f%%' % r)
-print('%.3f%%' % round(r, 2), round((0.2 + 0.1), 2))
-print('hello,{0},成绩提升了{1:.2f}%'.format('小明', r))
+print('%.1f%%' % r) #18.1%
+print('%.2f%%' % r) #18.06%
+print('%.3f%%' % round(r, 2), round((0.2 + 0.1), 2)) #18.060% 0.3
+print('hello,{0},成绩提升了{1:.2f}%'.format('小明', r)) #hello,小明,成绩提升了18.06%
 
-print('%.2f-%02d' % (3.225, 1.3))
-print('%.2f' % 3.1415926)
-
-sum = 0
-for x in range(101):
-  sum = sum + x
-print(sum) # 5050
-
-L = ['Bart', 'Lisa', 'Adam']
-for name in L:
-  print("hekko,%s" % name)
+print('%.2f-%02d' % (3.225, 1.3)) #3.23-01
+print('%.2f' % 3.1415926) #3.14
