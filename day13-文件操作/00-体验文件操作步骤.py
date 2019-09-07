@@ -12,6 +12,7 @@ mode: 设置打开文件的模式（访问模式）：写入，只读，追加�
     ......
 """
 
+
 # 1、打开open
 file = open('00-test.txt', 'w')
 # 2、读写write，read
