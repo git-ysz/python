@@ -10,14 +10,19 @@
 
 
 # 定义类
-class Washer():
+class Washer:
     # self --- 实例
-    # 初始化类的属性
+    # __init__,初始化类的属性-实例被初始化的时候自动被调用
     def __init__(self, name='洗衣机'):
         self.name = name
 
+    # __str__,实例被初始化的时候自动被调用 - 返回的是该实例对象的指向
     def __str__(self):
         return '这是洗衣机的类'
+
+    # __del__,实例被删除/销毁的时候自动被调用，程序结束属于被销毁
+    def __del__(self):
+        print(f'{self}，被删除了')
 
     def wash(self):
         print('洗衣服', f'该产品是{self.name}')
