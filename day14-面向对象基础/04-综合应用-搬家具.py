@@ -36,7 +36,7 @@ class House:
         self.address, self.area, self.free_area, self.furniture = address, area, area, []
 
     def __str__(self):
-        return f'房屋的地理位置为：{self.address}，占地面积：{self.area}平米，剩余占地面积：{self.free_area}平米，房内家具有：{self.furniture}。'
+        return f'房屋的地理位置为：{self.address}，占地面积：{self.area}平米，剩余占地面积：{self.free_area}平米，房内家具有：{"、".join(self.furniture)}。'
 
     def add_furniture(self, item):
         """容纳家具函数，item:目标家具的对象"""
