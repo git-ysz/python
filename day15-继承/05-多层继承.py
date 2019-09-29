@@ -1,6 +1,6 @@
 """
 故事演变：
-很多顾客都希望既能够吃到古法又能吃到学校技术的煎饼果子
+N年后，徒弟老了，想要把所有技术传承给自己的徒弟。
 """
 
 
@@ -22,7 +22,7 @@ class School(object):
         print(f'运用{self.kongfu}制作煎饼果子 -- 学校')
 
 
-# 徒弟类 - 继承师傅类 《第一种方法》 (第二种方法见06文件super)
+# 徒弟类 - 继承师傅类 《第一种方法》
 class Prentice(Master, School):
     """注意：当一个类有多个父类的时候，默认使用第一个父类的同名属性和方法"""
     def __init__(self):
@@ -44,8 +44,21 @@ class Prentice(Master, School):
         School.make_cake(self)
 
 
+# 徒孙类
+class Tusun(Prentice):
+    pass
+
+
+print('这是徒弟的实例')
 tudi = Prentice()
 tudi.make_cake()
 tudi.make_master_cake()
 tudi.make_school_cake()
 tudi.make_cake()
+
+print('\n这是徒孙的实例')
+tusun = Tusun()
+tusun.make_cake()
+tusun.make_master_cake()
+tusun.make_school_cake()
+tusun.make_cake()
