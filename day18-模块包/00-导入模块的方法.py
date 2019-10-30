@@ -9,5 +9,5 @@ import math  # 导入指定模块
 from math import *  # 导入指定模块内的所有功能
 
 print(math.sqrt(9))  # 开平方 -- 3.0
-print(sqrt(9))  # 开平方 -- 3.0
-print(pi, e)  # 3.141592653589793...
+print(sqrt(9))  # 开平方 -- 3.0 导入指定模块内的所有功能
+print(pi, e)  # 3.141592653589793... 导入指定模块内的所有功能

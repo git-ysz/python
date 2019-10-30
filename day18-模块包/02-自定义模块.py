@@ -1,6 +1,8 @@
 """
 
 """
-import my_test_module
+import _test_module as test_module
 
-my_test_module.test(2, 3)
+test_module.test(2, 3)
+print(test_module.__name__)
+print(test_module.__doc__)
