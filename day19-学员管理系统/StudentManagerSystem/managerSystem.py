@@ -5,6 +5,7 @@ class StudentManager(object):
     """
     管理系统
     """
+
     def __init__(self):
         # 储存数据所用的列表
         self.student_list = []
@@ -22,7 +23,11 @@ class StudentManager(object):
             self.show_menu()
 
             # 3.用户输入功能序号
-            menu_num = int(input('请输入功能序号：'))
+            try:
+                menu_num = int(input('请输入功能序号：'))
+            except Exception as res:
+                print('输入有误，请重新输入', res)
+                continue
 
             # 4.根据用户输入的功能序号执行不同的功能
             if menu_num == 1:
@@ -47,11 +52,23 @@ class StudentManager(object):
                 # 退出系统 -- 退出循环
                 print('--退出系统--')
                 break
+            else:
+                print('输入有误，请重新输入')
 
     """系统功能函数"""
 
     def load_student(self):
-        pass
+        try:
+            f = open('student.data', 'r')
+        except FileNotFoundError:
+            f = open('student.data', 'w')
+        else:
+            data = f.read()
+            new_list = eval(data)
+            print(new_list)
+            self.student_list = [Student(i['name'], i['gender'], i['tel']) for i in new_list]
+        finally:
+            f.close()
 
     @staticmethod
     def show_menu():
@@ -73,7 +90,7 @@ class StudentManager(object):
         name, gender, tel = input('请输入学员姓名：'), input('请输入学员性别：'), input('请输入学员联系方式：')
         # 2.创建学员对象 -- 学员类在student文件内，导入该模块，创建学员类
         student = Student(name, gender, tel)
-        print(student)
+        print('添加成功！', student)
         # 3.将该学员添加到学员列表
         self.student_list.append(student)
 
@@ -90,16 +107,52 @@ class StudentManager(object):
                 break
         else:
             print('该学员不存在。')
-        print(self.student_list)
 
     def modify_student(self):
         print('--修改学员信息--')
+        # 1.用户输入目标学员姓名
+        modify_name = input('请输入需要修改的学员姓名：')
+        # 2.遍历列表数据，如果学员存在，修改姓名性别手机号，否则提示学员不存在
+        for i in self.student_list:
+            if i.name == modify_name:
+                i.name = input('请输入修改后的姓名：')
+                i.gender = input('请输入修改后的性别：')
+                i.tel = input('请输入修改后的联系方式：')
+                print(f'修改该学员成功，修改后姓名：{i.name}，性别：{i.gender}，联系方式：{i.tel}')
+                break
+        else:
+            print('查无此人...')
 
     def search_student(self):
         print('--查询学员信息--')
+        # 1.用户输入目标学员姓名
+        search_name = input('请输入要查询的学员的姓名：')
+        # 2.遍历学员列表，如果用户输入的学员存在则打印学员信息，否则提示学员不存在
+        for i in self.student_list:
+            if i.name == search_name:
+                print(f'查询成功：学员姓名：{i.name}，性别：{i.gender}，联系方式：{i.tel}')
+                break
+        else:
+            print('该学员不存在。')
 
     def show_student(self):
         print('--显示所有学员信息--')
+        print('姓名\t性别\t手机号')
+        for i in self.student_list:
+            print(f'{i.name}\t{i.gender}\t{i.tel}')
 
     def save_student(self):
         print('--保存学员信息--')
+        # 1.打开文件
+        f = open('student.data', 'w')
+
+        # 2.文件写入学员数据
+        # 注意1：写入的数据不能是内存地址，需要吧学员数据转换成列表字典数据再做储存
+        new_list = [i.__dict__ for i in self.student_list]
+        print(new_list)
+        # 注意2：文件内数据要求为字符串类型，故需要先转换数据类型为字符串才能写入数据
+        f.write(str(new_list))
+
+        # 3.关闭文件
+        f.close()
+        print('保存成功！')
