@@ -5,6 +5,7 @@ class StudentManager(object):
     """
     管理系统
     """
+
     def __init__(self):
         # 储存数据所用的列表
         self.student_list = []
