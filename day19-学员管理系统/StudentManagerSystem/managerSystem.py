@@ -5,7 +5,6 @@ class StudentManager(object):
     """
     管理系统
     """
-
     def __init__(self):
         # 储存数据所用的列表
         self.student_list = []
@@ -90,9 +89,9 @@ class StudentManager(object):
         name, gender, tel = input('请输入学员姓名：'), input('请输入学员性别：'), input('请输入学员联系方式：')
         # 2.创建学员对象 -- 学员类在student文件内，导入该模块，创建学员类
         student = Student(name, gender, tel)
-        print('添加成功！', student)
         # 3.将该学员添加到学员列表
         self.student_list.append(student)
+        print('添加成功！', student)
 
     def del_student(self):
         print('--删除学员信息--')
